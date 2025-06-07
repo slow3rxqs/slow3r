@@ -224,20 +224,20 @@ export default function LanyardCard() {
               </div>
             </>
           )}
-          {gameActivity ? (
+           {playingActivity ? (
             <div className="bg-white/5 border border-white/10 rounded-xl p-4 text-white shadow-md flex items-center gap-4 animate-fade-in hover:scale-[1.02] duration-300 ease-out">
               <img
-                src={`https://cdn.discordapp.com/app-assets/${gameActivity.application_id}/${gameActivity.assets.large_image}.png`}
-                alt={gameActivity.name}
+                src={`https://cdn.discordapp.com/app-assets/${playingActivity.application_id}/${playingActivity.assets.large_image}.png`}
+                alt={playingActivity.name}
                 className="w-14 h-14 rounded-md shadow"
               />
               <div>
-                <p className="text-sm font-semibold">{gameActivity.name}</p>
-                {gameActivity.details && (
-                  <p className="text-xs text-gray-400">{gameActivity.details}</p>
+                <p className="text-sm font-semibold">Şu an oynuyor: {playingActivity.name}</p>
+                {playingActivity.details && (
+                  <p className="text-xs text-gray-400">{playingActivity.details}</p>
                 )}
-                {gameActivity.state && (
-                  <p className="text-xs text-gray-400">{gameActivity.state}</p>
+                {playingActivity.state && (
+                  <p className="text-xs text-gray-400">{playingActivity.state}</p>
                 )}
               </div>
             </div>
