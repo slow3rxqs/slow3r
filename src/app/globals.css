@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+:root {
+  --background: linear-gradient(to bottom right, #111827, #000000); /* gray-900 → black */
+  --foreground: #ededed; /* açık renk yazı */
+  --font-inter: 'Inter', sans-serif;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --background: linear-gradient(to bottom right, #f9fafb, #d1d5db); /* light mode için açık tonlar */
+    --foreground: #1a1a1a; /* koyu renk yazı */
+  }
+}
+
+/* Uygulama genelinde geçerli olacak */
+body {
+  height: 100%;
+  margin: 0;
+  background: var(--background);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  transition: background 0.3s ease, color 0.3s ease;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+html {
+  overflow-y: scroll;
+  min-height: 100%;
+  background: var(--background);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  transition: background 0.3s ease, color 0.3s ease;
+}
