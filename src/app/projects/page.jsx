@@ -26,6 +26,13 @@ const projects = [
     demo: null,
   },
   {
+    title: "lavinnia docs",
+    description: "React ve Tailwind ile hazırlanmış modern dökümantasyon.",
+    tech: ["Next.js", "Tailwind CSS"],
+    website: "https://github.com/slow3rxqs/lavinnia-docs",
+    demo: null,
+  },
+  {
     title: "kick-stream",
     description: "React ve Tailwind ile hazırlanmış modern kişisel web sitesi.",
     tech: ["Discord.js", "NPM"],
