@@ -30,6 +30,7 @@ const projects = [
     description: "React ve Tailwind ile hazırlanmış modern dökümantasyon.",
     tech: ["Next.js", "Tailwind CSS"],
     github: "https://github.com/slow3rxqs/lavinnia-docs",
+    website: "https://lavinnia-docs.vercel.app/",
     demo: null,
   },
   {
