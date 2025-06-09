@@ -1,7 +1,7 @@
 "use client";
 
 import { Github, ExternalLink } from "lucide-react";
-import { FaNpm, FaDiscord } from "react-icons/fa";
+import { FaNpm, FaDiscord, FaGithub } from "react-icons/fa";
 import { TfiWorld } from "react-icons/tfi";
 const projects = [
   {
@@ -29,7 +29,7 @@ const projects = [
     title: "lavinnia docs",
     description: "React ve Tailwind ile hazırlanmış modern dökümantasyon.",
     tech: ["Next.js", "Tailwind CSS"],
-    website: "https://github.com/slow3rxqs/lavinnia-docs",
+    github: "https://github.com/slow3rxqs/lavinnia-docs",
     demo: null,
   },
   {
@@ -72,6 +72,15 @@ export default function ProjectsPage() {
                     className="flex items-center gap-1 text-sm text-gray-300 hover:text-white"
                   >
                     <FaDiscord className="w-4 h-4" /> Discord Sunucusu
+                  </a>
+                )}
+                {project.github && (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    className="flex items-center gap-1 text-sm text-gray-300 hover:text-white"
+                  >
+                    <FaGithub className="w-4 h-4" /> Github
                   </a>
                 )}
                 {project.npm && (
