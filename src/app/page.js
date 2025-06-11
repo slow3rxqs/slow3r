@@ -212,11 +212,14 @@ export default function LanyardCard() {
 
           {gameActivity && gameActivity.assets?.large_image ? (
             <div className="bg-white/5 border border-white/10 rounded-xl p-4 text-white shadow-md flex items-center gap-4">
-              <img
-                src={`https://cdn.discordapp.com/app-assets/${gameActivity.application_id}/${gameActivity.assets.large_image}.png`}
-                alt={gameActivity.name}
-                className="w-14 h-14 rounded-md shadow"
-              />
+  {gameActivity.assets && gameActivity.assets.large_image ? (
+  <img
+    src={`https://cdn.discordapp.com/app-assets/${gameActivity.application_id}/${gameActivity.assets.large_image}.png`}
+    alt={gameActivity.name}
+    className="w-14 h-14 rounded-md shadow"
+  />
+) : null}
+
               <div>
                 <p className="text-sm font-semibold">{gameActivity.name}</p>
                 {gameActivity.details && <p className="text-xs text-gray-400">{gameActivity.details}</p>}
@@ -225,11 +228,14 @@ export default function LanyardCard() {
             </div>
           ) : activeApp && activeApp.assets?.large_image ? (
             <div className="bg-white/5 border border-white/10 rounded-xl p-4 text-white shadow-md flex items-center gap-4">
-              <img
-                src={`https://cdn.discordapp.com/app-assets/${activeApp.application_id}/${activeApp.assets.large_image}.png`}
-                alt={activeApp.name}
-                className="w-14 h-14 rounded-md shadow"
-              />
+{gameActivity.assets && gameActivity.assets.large_image ? (
+  <img
+    src={`https://cdn.discordapp.com/app-assets/${gameActivity.application_id}/${gameActivity.assets.large_image}.png`}
+    alt={gameActivity.name}
+    className="w-14 h-14 rounded-md shadow"
+  />
+) : null}
+
               <div>
                 <p className="text-sm font-semibold">{activeApp.name}</p>
                 <p className="text-xs text-gray-400">{activeApp.details || "Uygulama açık"}</p>
