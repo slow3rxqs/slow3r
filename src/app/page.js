@@ -107,13 +107,9 @@ export default function LanyardCard() {
       ? `https://cdn.discordapp.com/app-assets/${applicationId}/${imageKey}.png`
       : "/fallback.png");
 
-      console.log("Activity name:", activityName);
-console.log("Image URL:", imageUrl);
-
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-start bg-gradient-to-br from-gray-900 to-black py-16">
       <div className="flex flex-col lg:flex-row gap-6 mt-40">
-        {/* Profil Kartı */}
         <div className="relative backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl p-6 w-[360px] shadow-xl">
           <div className="flex flex-col items-center text-white">
             <div className="relative">
@@ -160,10 +156,7 @@ console.log("Image URL:", imageUrl);
             </div>
           </div>
         </div>
-
-        {/* Bilgi Kartları */}
         <div className="flex flex-col gap-6 w-[360px]">
-          {/* Spotify veya Şarkı Çalar */}
           {data.listening_to_spotify && data.spotify ? (
             <div className="bg-gradient-to-br from-green-900/10 to-green-900/20 rounded-xl p-4 text-white shadow-md">
               <p className="text-green-400 font-semibold text-sm mb-3">🎵 Şu Anda Dinliyor</p>
@@ -204,8 +197,6 @@ console.log("Image URL:", imageUrl);
               <audio ref={audioRef} src="/muzikler/ornek.mp3" preload="auto" />
             </div>
           )}
-
-          {/* Oyun veya Uygulama */}
           {currentActivity ? (
             <div className="bg-white/5 border border-white/10 rounded-xl p-4 text-white shadow-md flex items-center gap-4">
               <img src={imageUrl} alt={activityName} className="w-14 h-14 rounded-md object-cover shadow" />
@@ -213,6 +204,12 @@ console.log("Image URL:", imageUrl);
                 <p className="text-sm font-semibold">{activityName}</p>
                 {activityDetails && <p className="text-xs text-gray-400">{activityDetails}</p>}
                 {activityState && <p className="text-xs text-gray-400">{activityState}</p>}
+
+                {currentActivity?.timestamps?.start && (
+                  <p className="text-xs text-gray-400 ">
+                    Oynama süresi: {formatTime(currentActivity.timestamps.start, Date.now())}
+                  </p>
+                )}
               </div>
             </div>
           ) : (
@@ -220,8 +217,6 @@ console.log("Image URL:", imageUrl);
               Şu anda herhangi bir uygulama açık değil.
             </div>
           )}
-
-          {/* Beceri Listesi */}
           <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl p-5 shadow-xl">
             <div className="flex items-center gap-2 mb-4">
               <Code className="w-4 h-4 text-white" />
@@ -237,8 +232,6 @@ console.log("Image URL:", imageUrl);
           </div>
         </div>
       </div>
-
-      {/* Footer */}
       <footer className="mt-40 text-center text-xs text-gray-500">
         <div className="w-[1000px] h-px bg-white/10 mb-6 mx-auto" />
         <p>© {new Date().getFullYear()} Abdulrahman Emin. Tüm Hakları Saklıdır.</p>
