@@ -1,17 +1,22 @@
-// "use client";
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import Image from "next/image";
-import { MessageCircle, Github, Music, Mail, Code, Monitor } from 'lucide-react';
+import { Github, Code } from "lucide-react";
 import { FaDiscord, FaSpotify, FaInstagram } from "react-icons/fa";
 
+// Kullanıcı ID'nizi buraya yazın
 const userId = "979762331879895102";
 
 const fetchLanyard = async () => {
   const res = await fetch(`https://api.lanyard.rest/v1/users/${userId}`);
   const json = await res.json();
   return json.data;
+};
+
+const customGameIcons = {
+  "Counter-Strike 2": "/cs2-icon.png",
+  "Valorant": "/valorant-icon.png",
+  "ROBLOX": "/roblox-icon.png"
 };
 
 export default function LanyardCard() {
@@ -86,15 +91,30 @@ export default function LanyardCard() {
       100;
   }
 
-  const activeApp = data.activities.find(
-    (activity) => activity.name === "Visual Studio Code"
-  );
+  const activeApp = data.activities.find((activity) => activity.name === "Visual Studio Code");
   const gameActivity = data.activities?.find((a) => a.type === 0);
+  const currentActivity = gameActivity || activeApp;
+
+  const activityName = currentActivity?.name;
+  const activityDetails = currentActivity?.details?.replace(/\n/g, " ");
+  const activityState = currentActivity?.state?.replace(/\n/g, " ");
+  const applicationId = currentActivity?.application_id;
+  const imageKey = currentActivity?.assets?.large_image;
+
+  const imageUrl =
+    customGameIcons[activityName] ??
+    (applicationId && imageKey
+      ? `https://cdn.discordapp.com/app-assets/${applicationId}/${imageKey}.png`
+      : "/fallback.png");
+
+      console.log("Activity name:", activityName);
+console.log("Image URL:", imageUrl);
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-start bg-gradient-to-br from-gray-900 to-black py-16">
       <div className="flex flex-col lg:flex-row gap-6 mt-40">
-        <div className="relative backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl p-6 w-[360px] animate-fade-in shadow-xl hover:scale-[1.02] transition-all duration-300 ease-out">
+        {/* Profil Kartı */}
+        <div className="relative backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl p-6 w-[360px] shadow-xl">
           <div className="flex flex-col items-center text-white">
             <div className="relative">
               <img
@@ -112,65 +132,43 @@ export default function LanyardCard() {
             </div>
             <h2 className="text-xl mt-3 font-semibold">Abdulrahman Emin</h2>
             <p className="text-gray-600 text-sm">@{user.username}</p>
-            <div className="mt-3 px-4 text-sm text-gray-300 text-center font-sans">
+            <p className="mt-3 px-4 text-sm text-gray-300 text-center font-sans">
               Merhaba! Ben React ve Discord botlarıyla uğraşmayı seven bir geliştiriciyim.
-            </div>
+            </p>
 
             <div className="mt-4 flex justify-center gap-3 text-white">
               {[{ title: "TR", label: "Konum" }, { title: "18", label: "Yaş" }].map((item, i) => (
-                <div
-                  key={i}
-                  className="bg-white/5 border border-white/10 rounded-lg px-4 py-2 flex flex-col items-center text-xs w-20 backdrop-blur-md"
-                >
+                <div key={i} className="bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-xs w-20 text-center">
                   <span className="text-base font-semibold">{item.title}</span>
-                  <span className="text-[10px] text-gray-400 tracking-wide uppercase">{item.label}</span>
+                  <span className="block text-[10px] text-gray-400 uppercase">{item.label}</span>
                 </div>
               ))}
             </div>
 
-            <div className="flex flex-col items-center gap-3 mt-6">
-              <div className="mb-2 w-72 h-[1px] bg-white/20" />
-              <div className="flex gap-3">
-                {[{
-                  href: "https://www.instagram.com/slow3rxq/",
-                  icon: <FaInstagram className="w-6 h-6 text-white" />
-                },
-                {
-                  href: "https://github.com/slow3rxqs",
-                  icon: <Github className="w-6 h-6 text-white" />
-                },
-                {
-                  href: "https://discord.gg/DRCE9wCn4K",
-                  icon: <FaDiscord className="w-6 h-6 text-white" />
-                },
-                {
-                  href: "https://open.spotify.com/user/31frrqycxg4cxv6etvvfsu3tyfdm?si=b3531dbde7f547f4",
-                  icon: <FaSpotify className="w-6 h-6 text-white" />
-                }].map(({ href, icon }, i) => (
-                  <div
-                    key={i}
-                    className="bg-white/5 border border-white/10 rounded-lg px-4 py-2 flex items-center justify-center text-xs backdrop-blur-md"
-                  >
-                    <a href={href} target="_blank" rel="noopener noreferrer">
-                      {icon}
-                    </a>
-                  </div>
-                ))}
-              </div>
+            <div className="mt-6 flex gap-3">
+              {[
+                { href: "https://www.instagram.com/slow3rxq/", icon: <FaInstagram className="w-6 h-6" /> },
+                { href: "https://github.com/slow3rxqs", icon: <Github className="w-6 h-6" /> },
+                { href: "https://discord.gg/DRCE9wCn4K", icon: <FaDiscord className="w-6 h-6" /> },
+                { href: "https://open.spotify.com/user/31frrqycxg4cxv6etvvfsu3tyfdm", icon: <FaSpotify className="w-6 h-6" /> },
+              ].map(({ href, icon }, i) => (
+                <a key={i} href={href} target="_blank" rel="noopener noreferrer"
+                  className="bg-white/5 border border-white/10 rounded-lg p-2 text-white">
+                  {icon}
+                </a>
+              ))}
             </div>
           </div>
         </div>
 
+        {/* Bilgi Kartları */}
         <div className="flex flex-col gap-6 w-[360px]">
+          {/* Spotify veya Şarkı Çalar */}
           {data.listening_to_spotify && data.spotify ? (
             <div className="bg-gradient-to-br from-green-900/10 to-green-900/20 rounded-xl p-4 text-white shadow-md">
               <p className="text-green-400 font-semibold text-sm mb-3">🎵 Şu Anda Dinliyor</p>
               <div className="flex gap-4">
-                <img
-                  src={data.spotify.album_art_url}
-                  alt="Album Art"
-                  className="w-14 h-14 rounded-md shadow"
-                />
+                <img src={data.spotify.album_art_url} alt="Album Art" className="w-14 h-14 rounded-md shadow" />
                 <div className="flex-1">
                   <p className="text-sm font-semibold">{data.spotify.song}</p>
                   <p className="text-xs text-gray-400">{data.spotify.artist}</p>
@@ -178,10 +176,7 @@ export default function LanyardCard() {
               </div>
               <div className="mt-3">
                 <div className="w-full h-1.5 bg-gray-700 rounded-full">
-                  <div
-                    className="h-1.5 bg-green-500 rounded-full transition-all duration-300"
-                    style={{ width: `${spotifyProgress}%` }}
-                  />
+                  <div className="h-1.5 bg-green-500 rounded-full" style={{ width: `${spotifyProgress}%` }} />
                 </div>
                 <div className="flex justify-between text-xs text-gray-400 mt-1">
                   <span>{formatTime(data.spotify.timestamps.start, Date.now())}</span>
@@ -199,10 +194,10 @@ export default function LanyardCard() {
                 <p className="mb-3">Şu anda şarkı çalmıyor. Dinlemek istersen butona bas!</p>
               )}
               <div className="flex justify-center space-x-4">
-                <button onClick={handlePlay} className="bg-white/5 border border-white/10 text-white font-medium px-5 py-2 rounded-lg shadow-md transition">
+                <button onClick={handlePlay} className="bg-white/5 border border-white/10 text-white px-5 py-2 rounded-lg">
                   Şarkıyı Çal
                 </button>
-                <button onClick={handlePause} className="bg-white/5 border border-white/10 text-white font-medium px-5 py-2 rounded-lg shadow-md transition">
+                <button onClick={handlePause} className="bg-white/5 border border-white/10 text-white px-5 py-2 rounded-lg">
                   Durdur
                 </button>
               </div>
@@ -210,35 +205,14 @@ export default function LanyardCard() {
             </div>
           )}
 
-          {gameActivity && gameActivity.assets?.large_image ? (
+          {/* Oyun veya Uygulama */}
+          {currentActivity ? (
             <div className="bg-white/5 border border-white/10 rounded-xl p-4 text-white shadow-md flex items-center gap-4">
-  {gameActivity.assets && gameActivity.assets.large_image ? (
-  <img
-    src={`https://cdn.discordapp.com/app-assets/${gameActivity.application_id}/${gameActivity.assets.large_image}.png`}
-    alt={gameActivity.name}
-    className="w-14 h-14 rounded-md shadow"
-  />
-) : null}
-
+              <img src={imageUrl} alt={activityName} className="w-14 h-14 rounded-md object-cover shadow" />
               <div>
-                <p className="text-sm font-semibold">{gameActivity.name}</p>
-                {gameActivity.details && <p className="text-xs text-gray-400">{gameActivity.details}</p>}
-                {gameActivity.state && <p className="text-xs text-gray-400">{gameActivity.state}</p>}
-              </div>
-            </div>
-          ) : activeApp && activeApp.assets?.large_image ? (
-            <div className="bg-white/5 border border-white/10 rounded-xl p-4 text-white shadow-md flex items-center gap-4">
-{gameActivity.assets && gameActivity.assets.large_image ? (
-  <img
-    src={`https://cdn.discordapp.com/app-assets/${gameActivity.application_id}/${gameActivity.assets.large_image}.png`}
-    alt={gameActivity.name}
-    className="w-14 h-14 rounded-md shadow"
-  />
-) : null}
-
-              <div>
-                <p className="text-sm font-semibold">{activeApp.name}</p>
-                <p className="text-xs text-gray-400">{activeApp.details || "Uygulama açık"}</p>
+                <p className="text-sm font-semibold">{activityName}</p>
+                {activityDetails && <p className="text-xs text-gray-400">{activityDetails}</p>}
+                {activityState && <p className="text-xs text-gray-400">{activityState}</p>}
               </div>
             </div>
           ) : (
@@ -247,7 +221,8 @@ export default function LanyardCard() {
             </div>
           )}
 
-          <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl p-5 w-[360px] shadow-xl hover:scale-[1.02] transition-all duration-300 ease-out">
+          {/* Beceri Listesi */}
+          <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl p-5 shadow-xl">
             <div className="flex items-center gap-2 mb-4">
               <Code className="w-4 h-4 text-white" />
               <span className="text-sm font-medium text-white">Beceri ve Teknolojiler</span>
@@ -263,8 +238,9 @@ export default function LanyardCard() {
         </div>
       </div>
 
-      <footer className="mt-40 flex flex-col items-center justify-center text-center text-xs text-gray-500">
-        <div className="w-[1000px] h-px bg-white/10 mb-6" />
+      {/* Footer */}
+      <footer className="mt-40 text-center text-xs text-gray-500">
+        <div className="w-[1000px] h-px bg-white/10 mb-6 mx-auto" />
         <p>© {new Date().getFullYear()} Abdulrahman Emin. Tüm Hakları Saklıdır.</p>
       </footer>
     </div>
