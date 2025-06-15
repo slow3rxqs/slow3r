@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import { Github, Code } from "lucide-react";
-import { FaDiscord, FaSpotify, FaInstagram } from "react-icons/fa";
+import { FaDiscord, FaSpotify, FaInstagram, FaKickstarter } from "react-icons/fa";
 
 // Kullanıcı ID'nizi buraya yazın
 const userId = "979762331879895102";
@@ -148,6 +148,7 @@ export default function LanyardCard() {
                 { href: "https://github.com/slow3rxqs", icon: <Github className="w-6 h-6" /> },
                 { href: "https://discord.gg/DRCE9wCn4K", icon: <FaDiscord className="w-6 h-6" /> },
                 { href: "https://open.spotify.com/user/31frrqycxg4cxv6etvvfsu3tyfdm", icon: <FaSpotify className="w-6 h-6" /> },
+                { href: "https://kick.com/slow3rxq", icon: <FaKickstarter className="w-6 h-6" /> },
               ].map(({ href, icon }, i) => (
                 <a key={i} href={href} target="_blank" rel="noopener noreferrer"
                   className="bg-white/5 border border-white/10 rounded-lg p-2 text-white">
