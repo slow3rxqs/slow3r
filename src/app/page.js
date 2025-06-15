@@ -16,7 +16,8 @@ const fetchLanyard = async () => {
 const customGameIcons = {
   "Counter-Strike 2": "/cs2-icon.png",
   "Valorant": "/valorant-icon.png",
-  "ROBLOX": "/roblox-icon.png"
+  "ROBLOX": "/roblox-icon.png",
+  "EA Sports FC 24": "/fc-24.png"
 };
 
 export default function LanyardCard() {
