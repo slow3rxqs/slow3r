@@ -141,7 +141,7 @@ export default function LanyardCard() {
                 </div>
               ))}
             </div>
-            <div className="mb-2 w-72 my-5 h-[1px] bg-white/20"/>
+            <div className="mb-2 w-72 my-7 h-[1px] bg-white/20"/>
             <div className="mt-6 flex gap-3">
               {[
                 { href: "https://www.instagram.com/slow3rxq/", icon: <FaInstagram className="w-6 h-6" /> },
