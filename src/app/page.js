@@ -78,12 +78,19 @@ export default function LanyardCard() {
     offline: "bg-gray-500",
   };
 
-  const formatTime = (start, end) => {
-    const totalSec = Math.floor((end - start) / 1000);
-    const min = Math.floor(totalSec / 60);
-    const sec = totalSec % 60;
-    return `${min}:${sec < 10 ? "0" : ""}${sec}`;
-  };
+const formatTime = (start, end) => {
+  const totalSec = Math.floor((end - start) / 1000);
+  const hours = Math.floor(totalSec / 3600);
+  const minutes = Math.floor((totalSec % 3600) / 60);
+  const seconds = totalSec % 60;
+
+  const formattedHours = hours > 0 ? `${hours}:` : "";
+  const formattedMinutes = hours > 0 ? String(minutes).padStart(2, '0') : String(minutes);
+  const formattedSeconds = String(seconds).padStart(2, '0');
+
+  return `${formattedHours}${formattedMinutes}:${formattedSeconds}`;
+};
+
 
   let spotifyProgress = 0;
   if (data.spotify) {
