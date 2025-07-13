@@ -18,7 +18,7 @@ const customGameIcons = {
   "Valorant": "/valorant-icon.png",
   "ROBLOX": "/roblox-icon.png",
   "EA Sports FC 24": "/fc-24.png",
-  "Lunar Client:" "/logo.png",
+  "Lunar Client:" "/Lunar Client.png",
 };
 
 export default function LanyardCard() {
