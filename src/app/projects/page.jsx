@@ -29,25 +29,25 @@ const languageColors = {
 const projects = [
   {
     title: "lavinnia bot",
-    description: "Kullanıcıların kolay kurulum ve pratik şekilde kullanımlıdır",
+    description: "Easy installation and practical use for users",
     tech: ["Node.js", "Discord.js", "Firebase"],
     discord: "https://discord.gg/8QMjneYC63",
   },
   {
     title: "slow3rxq portfolio",
-    description: "React ve Tailwind ile hazırlanmış modern kişisel web sitesi.",
+    description: "Modern personal website built with React and Tailwind.",
     tech: ["Next.js", "Tailwind CSS"],
     website: "https://slow3r.xyz",
   },
   {
     title: "netuser portfolio",
-    description: "React ve Tailwind ile hazırlanmış modern kişisel web sitesi.",
+    description: "Modern personal website built with React and Tailwind.",
     tech: ["Next.js", "Tailwind CSS"],
     website: "https://hakancanpolat.vercel.app/",
   },
   {
     title: "kick-stream",
-    description: "Discord.js ile hazırlanmış yayın bildirim sistemi.",
+    description: "Broadcast notification system prepared with Discord.js.",
     tech: ["Discord.js", "NPM"],
     npm: "https://www.npmjs.com/package/kick-stream",
   },
@@ -170,7 +170,7 @@ export default function ProjectsPage() {
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white p-6">
       <div className="max-w-6xl mx-auto mt-32 space-y-16">
         <section>
-          <h1 className="text-3xl font-bold mb-8 text-center">🧠 Özel Projelerim</h1>
+          <h1 className="text-3xl font-bold mb-8 text-center">🧠 My Special Projects</h1>
           <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {projects.map((project, index) => renderProjectCard(project, index))}
           </div>
@@ -182,7 +182,7 @@ export default function ProjectsPage() {
               {githubRepos.map((repo, index) => renderProjectCard(repo, index))}
             </div>
           ) : (
-            <p className="text-center text-gray-400">Yükleniyor veya proje bulunamadı...</p>
+            <p className="text-center text-gray-400">Loading or project not found...</p>
           )}
         </section>
       </div>
