@@ -106,11 +106,12 @@ export default function LanyardCard() {
     (applicationId && imageKey
       ? `https://cdn.discordapp.com/app-assets/${applicationId}/${imageKey}.png`
       : "/fallback.png");
-  
+
+
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-start bg-gradient-to-br from-gray-900 to-black py-16">
       <div className="flex flex-col lg:flex-row gap-6 mt-40">
-        <div className="relative backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl p-6 w-[360px] shadow-xl">
+        <div className="relative backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl p-6 hover:scale-[1.02] transition-all duration-300 ease-out w-[360px] shadow-xl">
           <div className="flex flex-col items-center text-white">
             <div className="relative">
               <img
@@ -129,23 +130,22 @@ export default function LanyardCard() {
             <h2 className="text-xl mt-3 font-semibold">Abdulrahman Emin</h2>
             <p className="text-gray-600 text-sm">@{user.username}</p>
             <p className="mt-3 px-4 text-sm text-gray-300 text-center font-sans">
-              Merhaba! Ben React ve Discord botlarıyla uğraşmayı seven bir geliştiriciyim.
+            Hello! I'm a developer who loves tinkering with React and Discord bots. I'm trying to make a career out of promoting myself everywhere.
             </p>
 
             <div className="mt-4 flex justify-center gap-3 text-white">
-              {[{ title: "TR", label: "Konum" }, { title: "18", label: "Yaş" }].map((item, i) => (
+              {[{ title: "TR", label: "Location" }, { title: "18", label: "Age" }].map((item, i) => (
                 <div key={i} className="bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-xs w-20 text-center">
                   <span className="text-base font-semibold">{item.title}</span>
                   <span className="block text-[10px] text-gray-400 uppercase">{item.label}</span>
                 </div>
               ))}
             </div>
-            <div className="mb-2 w-72 my-6 h-[1px] bg-white/20"/>
+
             <div className="mt-6 flex gap-3">
-              {[
+            {[
                 { href: "https://www.instagram.com/slow3rxq/", icon: <FaInstagram className="w-6 h-6" /> },
                 { href: "https://github.com/slow3rxqs", icon: <Github className="w-6 h-6" /> },
-                { href: "https://discord.gg/DRCE9wCn4K", icon: <FaDiscord className="w-6 h-6" /> },
                 { href: "https://open.spotify.com/user/31frrqycxg4cxv6etvvfsu3tyfdm", icon: <FaSpotify className="w-6 h-6" /> },
                 { href: "https://kick.com/slow3rxq", icon: <FaKickstarter className="w-6 h-6" /> },
               ].map(({ href, icon }, i) => (
@@ -159,8 +159,8 @@ export default function LanyardCard() {
         </div>
         <div className="flex flex-col gap-6 w-[360px]">
           {data.listening_to_spotify && data.spotify ? (
-            <div className="bg-gradient-to-br from-green-900/10 to-green-900/20 rounded-xl p-4 text-white shadow-md">
-              <p className="text-green-400 font-semibold text-sm mb-3">🎵 Şu Anda Dinliyor</p>
+            <div className="bg-gradient-to-br from-green-900/10 to-green-900/20 rounded-xl p-4 text-white shadow-md hover:scale-[1.02] transition-all duration-300 ease-out">
+              <p className="text-green-400 font-semibold text-sm mb-3">🎵 Currently Listening</p>
               <div className="flex gap-4">
                 <img src={data.spotify.album_art_url} alt="Album Art" className="w-14 h-14 rounded-md shadow" />
                 <div className="flex-1">
@@ -179,27 +179,27 @@ export default function LanyardCard() {
               </div>
             </div>
           ) : (
-            <div className="bg-gray-800/50 rounded-xl p-4 text-gray-300 text-sm text-center shadow-inner">
+            <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl p-4 text-gray-300 hover:scale-[1.02] transition-all duration-300 ease-out text-sm text-center shadow-inner">
               {isPlaying ? (
-                <p className="mb-3">
-                  Şu anda çalan şarkı: <span className="font-semibold text-white">{currentSongTitle}</span>
+                <p className="mb-3 ">
+                  Currently playing song: <span className="font-semibold text-white">{currentSongTitle}</span>
                 </p>
               ) : (
-                <p className="mb-3">Şu anda şarkı çalmıyor. Dinlemek istersen butona bas!</p>
+                <p className="mb-3 ">The song isn't playing right now. If you want to listen, press the button!</p>
               )}
               <div className="flex justify-center space-x-4">
                 <button onClick={handlePlay} className="bg-white/5 border border-white/10 text-white px-5 py-2 rounded-lg">
-                  Şarkıyı Çal
+                Play the song
                 </button>
                 <button onClick={handlePause} className="bg-white/5 border border-white/10 text-white px-5 py-2 rounded-lg">
-                  Durdur
+                  Stop
                 </button>
               </div>
               <audio ref={audioRef} src="/muzikler/ornek.mp3" preload="auto" />
             </div>
           )}
           {currentActivity ? (
-            <div className="bg-white/5 border border-white/10 rounded-xl p-4 text-white shadow-md flex items-center gap-4">
+            <div className="bg-white/5 border border-white/10 rounded-xl p-4 text-white shadow-md flex items-center gap-4 hover:scale-[1.02] transition-all duration-300 ease-out">
               <img src={imageUrl} alt={activityName} className="w-14 h-14 rounded-md object-cover shadow" />
               <div>
                 <p className="text-sm font-semibold">{activityName}</p>
@@ -208,24 +208,24 @@ export default function LanyardCard() {
 
                 {currentActivity?.timestamps?.start && (
                   <p className="text-xs text-gray-400 ">
-                    Oynama süresi: {formatTime(currentActivity.timestamps.start, Date.now())}
+                    Playing time: {formatTime(currentActivity.timestamps.start, Date.now())}
                   </p>
                 )}
               </div>
             </div>
           ) : (
-            <div className="bg-gray-800/50 rounded-xl p-4 text-gray-300 text-sm text-center shadow-inner">
-              Şu anda herhangi bir uygulama açık değil.
+            <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl p-4 text-gray-300 text-sm text-center shadow-inner">
+              There are currently no applications open.
             </div>
           )}
-          <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl p-5 shadow-xl">
+          <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl p-5 shadow-xl hover:scale-[1.02] transition-all duration-300 ease-out">
             <div className="flex items-center gap-2 mb-4">
               <Code className="w-4 h-4 text-white" />
-              <span className="text-sm font-medium text-white">Beceri ve Teknolojiler</span>
+              <span className="text-sm font-medium text-white">Skills and Technologies</span>
             </div>
             <div className="grid grid-cols-3 gap-2">
               {skills.map((skill, index) => (
-                <div key={index} className="bg-white/10 border border-white/10 rounded-lg p-2 text-xs font-medium text-white text-center">
+                <div key={index} className="bg-white/5 border border-white/10 rounded-lg p-2 text-xs font-medium text-white text-center">
                   {skill}
                 </div>
               ))}
@@ -233,9 +233,9 @@ export default function LanyardCard() {
           </div>
         </div>
       </div>
-      <footer className="mt-40 text-center text-xs text-gray-500">
+      <footer className="mt-52 text-center text-xs text-gray-500">
         <div className="w-[1000px] h-px bg-white/10 mb-6 mx-auto" />
-        <p>© {new Date().getFullYear()} Abdulrahman Emin. Tüm Hakları Saklıdır.</p>
+        <p>© {new Date().getFullYear()} Abdulrahman Emin. All rights reserved.</p>
       </footer>
     </div>
   );
