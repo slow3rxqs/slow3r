@@ -66,7 +66,7 @@ export default function LanyardCard() {
 
   const skills = ["JavaScript", "Python", "React", "Node.js", "CSS", "C#"];
 
-  if (!data) return <p className="text-white text-center mt-[450px]">Yükleniyor...</p>;
+  if (!data) return <p className="text-white text-center mt-[450px]">Loading...</p>;
 
   const user = data.discord_user;
   const avatarUrl = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`;
