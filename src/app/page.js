@@ -4,7 +4,6 @@ import { useEffect, useState, useRef } from "react";
 import { Github, Code } from "lucide-react";
 import { FaDiscord, FaSpotify, FaInstagram, FaKickstarter } from "react-icons/fa";
 
-// Kullanıcı ID'nizi buraya yazın
 const userId = "979762331879895102";
 
 const fetchLanyard = async () => {
@@ -15,10 +14,10 @@ const fetchLanyard = async () => {
 
 const customGameIcons = {
   "Counter-Strike 2": "/cs2-icon.png",
-  "Valorant": "/valorant-icon.png",
-  "ROBLOX": "/roblox-icon.png",
+  Valorant: "/valorant-icon.png",
+  ROBLOX: "/roblox-icon.png",
   "EA Sports FC 24": "/fc-24.png",
-  "Lunar Client:" "/lunar-client.png",
+  "Lunar Client": "/lunar-client.png",
 };
 
 export default function LanyardCard() {
@@ -65,7 +64,7 @@ export default function LanyardCard() {
     }
   };
 
-  const skills = ['JavaScript', 'Python', 'React', 'Node.js', 'CSS', 'C#'];
+  const skills = ["JavaScript", "Python", "React", "Node.js", "CSS", "C#"];
 
   if (!data) return <p className="text-white text-center mt-[450px]">Yükleniyor...</p>;
 
@@ -78,19 +77,12 @@ export default function LanyardCard() {
     offline: "bg-gray-500",
   };
 
-const formatTime = (start, end) => {
-  const totalSec = Math.floor((end - start) / 1000);
-  const hours = Math.floor(totalSec / 3600);
-  const minutes = Math.floor((totalSec % 3600) / 60);
-  const seconds = totalSec % 60;
-
-  const formattedHours = hours > 0 ? `${hours}:` : "";
-  const formattedMinutes = hours > 0 ? String(minutes).padStart(2, '0') : String(minutes);
-  const formattedSeconds = String(seconds).padStart(2, '0');
-
-  return `${formattedHours}${formattedMinutes}:${formattedSeconds}`;
-};
-
+  const formatTime = (start, end) => {
+    const totalSec = Math.floor((end - start) / 1000);
+    const min = Math.floor(totalSec / 60);
+    const sec = totalSec % 60;
+    return `${min}:${sec < 10 ? "0" : ""}${sec}`;
+  };
 
   let spotifyProgress = 0;
   if (data.spotify) {
@@ -103,7 +95,6 @@ const formatTime = (start, end) => {
   const activeApp = data.activities.find((activity) => activity.name === "Visual Studio Code");
   const gameActivity = data.activities?.find((a) => a.type === 0);
   const currentActivity = gameActivity || activeApp;
-
   const activityName = currentActivity?.name;
   const activityDetails = currentActivity?.details?.replace(/\n/g, " ");
   const activityState = currentActivity?.state?.replace(/\n/g, " ");
@@ -115,7 +106,7 @@ const formatTime = (start, end) => {
     (applicationId && imageKey
       ? `https://cdn.discordapp.com/app-assets/${applicationId}/${imageKey}.png`
       : "/fallback.png");
-
+  
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-start bg-gradient-to-br from-gray-900 to-black py-16">
       <div className="flex flex-col lg:flex-row gap-6 mt-40">
