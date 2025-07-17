@@ -1,6 +1,6 @@
 "use client";
 
-import { Mail, Github, Linkedin, Code2 } from "lucide-react"
+import { Mail, Github, Linkedin, Code2, Instagram } from "lucide-react"
 import { useEffect, useState } from "react";
 const userId = "979762331879895102";
 
@@ -29,7 +29,7 @@ export default function AboutPage() {
   if (!data) {
     return (
       <div className="min-h-screen flex items-center justify-center text-white">
-        Yükleniyor...
+        Loading...
       </div>
     );
   }
@@ -46,38 +46,33 @@ export default function AboutPage() {
             className="w-28 h-28 rounded-full object-cover border-4 border-white/10 shadow"
             onError={(e) => {
               e.target.onerror = null;
-              e.target.src = "/fallback-avatar.png"; // public klasöründe fallback-avatar.png adında bir resim olmalı
+              e.target.src = "/fallback-avatar.png";
             }}
           />
           <div>
             <h1 className="text-2xl font-bold mb-1">Abdulrahman Emin</h1>
-            <p className="text-sm text-gray-400 mb-2">Full Stack Web Geliştirici</p>
+            <p className="text-sm text-gray-400 mb-2">Full Stack Web Developer</p>
             <p className="text-sm text-gray-300 leading-relaxed font-inter">
-            Merhaba! Ben Abdulrahman Emin, web teknolojilerine tutkuyla bağlı bir geliştiriciyim. Modern, kullanıcı dostu ve performanslı web uygulamaları geliştiriyorum. React, Node.js, JavaScript ve C# ile çalışmayı seviyor, aynı zamanda Discord botları ve özel projeler geliştirmekten keyif alıyorum.
+            Hello! I'm Abdulrahman Emin, a developer with a passion for web technologies. I develop modern, user-friendly, and high-performance web applications. I enjoy working with React, Node.js, JavaScript, and C#, and I also enjoy developing Discord bots and custom projects.
             </p>
           </div>
         </div>
-
-        {/* Bilgi Kartları */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
           <div className="bg-white/10 border border-white/10 rounded-xl p-4 text-center">
-            <h3 className="text-sm text-gray-400 mb-1">Uzmanlıklar</h3>
+            <h3 className="text-sm text-gray-400 mb-1">My Areas of Expertise</h3>
             <p className="text-base font-semibold text-white">React, Node.js, C++, C#</p>
           </div>
           <div className="bg-white/10 border border-white/10 rounded-xl p-4 text-center">
-            <h3 className="text-sm text-gray-400 mb-1">Deneyim</h3>
-            <p className="text-base font-semibold text-white">+4 yıl</p>
+            <h3 className="text-sm text-gray-400 mb-1">My Experiences</h3>
+            <p className="text-base font-semibold text-white">+5 year</p>
           </div>
           <div className="bg-white/10 border border-white/10 rounded-xl p-4 text-center">
-            <h3 className="text-sm text-gray-400 mb-1">Durum</h3>
-            <p className="text-base font-semibold text-emerald-400">Freelance + Açık</p>
+            <h3 className="text-sm text-gray-400 mb-1">Status</h3>
+            <p className="text-base font-semibold text-emerald-400">Freelance + Open</p>
           </div>
         </div>
-
-        {/* Sosyal Linkler */}
         <div className="mt-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-
             <a
               href="https://github.com/slow3rxq"
               target="_blank"
@@ -94,10 +89,18 @@ export default function AboutPage() {
               <Linkedin className="w-4 h-4" />
               LinkedIn
             </a>
+            <a
+              href="https://instagram.com/slow3rxq"
+              target="_blank"
+              className="text-gray-300 hover:text-white transition flex items-center gap-1 text-sm"
+            >
+              <Instagram className="w-4 h-4" />
+              İnstagram
+            </a>
           </div>
           <div className="text-xs text-gray-500 flex items-center gap-1">
             <Code2 className="w-3 h-3" />
-            Son güncelleme: Haziran 2025
+            Last update: July 2025
           </div>
         </div>
       </div>
