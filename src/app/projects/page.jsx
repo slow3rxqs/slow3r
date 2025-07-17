@@ -80,10 +80,10 @@ export default function ProjectsPage() {
 
       const repos = allRepos.map((repo) => ({
         title: repo.name,
-        description: repo.description || "Açıklama yok.",
-        tech: [repo.language || "Bilinmiyor"],
+        description: repo.description || "No explanation.",
+        tech: [repo.language || "Unknown"],
         github: repo.html_url,
-        language: repo.language || "Bilinmiyor",
+        language: repo.language || "Unknown",
       }));
 
       setGithubRepos(repos);
