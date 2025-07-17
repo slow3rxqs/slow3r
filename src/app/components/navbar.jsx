@@ -8,12 +8,10 @@ export default function MinimalNavbar() {
   const [scrolled, setScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
 
-  // Scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50)
 
-      // Find active section
       const sections = ["home", "about", "work", "services", "contact"]
       const currentSection = sections.find((section) => {
         const element = document.getElementById(section)
@@ -34,21 +32,21 @@ export default function MinimalNavbar() {
   }, [])
 
   const navItems = [
-    { name: "Ana Sayfa", href: "/" },
-    { name: "Hakkımda", href: "/about" },
-    { name: "Projeler", href: "/projects" },
+    { name: "Home", href: "/" },
+    { name: "About", href: "/about" },
+    { name: "Projects", href: "/projects" },
+    { name: "References", href: "/referans" },
   ]
 
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "backdrop-blur-md shadow-lg" : " backdrop-blur-sm"
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "backdrop-blur-md shadow-lg" : "backdrop-blur-sm"
           }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-x-hidden">
-          <div className="flex justify-between items-center h-20">
-            {/* Elegant Logo */}
-            <div className="flex-shrink-0">
+          <div className="relative flex items-center justify-center h-20">
+            <div className="absolute left-0 flex items-center">
               <a href="/" className="flex items-center group">
                 <div className="relative">
                   <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-slate-900 to-slate-700 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300">
@@ -61,8 +59,6 @@ export default function MinimalNavbar() {
                 </div>
               </a>
             </div>
-
-            {/* Desktop Navigation */}
             <div className="hidden lg:block">
               <div className="flex items-center space-x-8">
                 {navItems.map((item) => (
@@ -70,33 +66,29 @@ export default function MinimalNavbar() {
                     key={item.name}
                     href={item.href}
                     className={`relative text-sm font-medium transition-colors duration-300 ${activeSection === item.href.substring(1)
-                        ? "text-white"
-                        : "text-white hover:text-white"
+                      ? "text-white"
+                      : "text-white hover:text-white"
                       }`}
                   >
                     <span className="text-white">{item.name}</span>
                     {activeSection === item.href.substring(1) && (
-                      <div className="absolute -bottom-1 left-0 right-0 h-0.5  rounded-full"></div>
+                      <div className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full"></div>
                     )}
                   </a>
                 ))}
               </div>
             </div>
-
-            {/* CTA Button */}
-            <div className="hidden md:block">
+            <div className="hidden md:block absolute right-0">
               <a
-                href="https://discord.gg/DRCE9wCn4K"
+                href="https://www.instagram.com/slow3rxq"
                 target="_blank"
                 className="group inline-flex items-center px-6 py-3 rounded-xl text-sm font-semibold text-white bg-slate-900 hover:bg-slate-800 transition-all duration-300 shadow-lg hover:shadow-xl"
               >
-                Birlikte Çalışalım
+                Work With Us
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
               </a>
             </div>
-
-            {/* Mobile menu button */}
-            <div className="lg:hidden">
+            <div className="lg:hidden absolute right-0">
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-white/10 transition-colors duration-200"
@@ -108,30 +100,24 @@ export default function MinimalNavbar() {
           </div>
         </div>
       </nav>
-
-      {/* Mobile Navigation */}
       <div
         className={`lg:hidden fixed inset-0 z-40 transition-all duration-300 ${isOpen ? "opacity-100 visible" : "opacity-0 invisible"
           }`}
       >
-        {/* Backdrop */}
         <div className="absolute inset-0 bg-slate-900/20 backdrop-blur-sm" onClick={() => setIsOpen(false)} />
-
-        {/* Mobile Menu */}
         <div
-          className={`absolute top-24 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-sm bg-white/5  rounded-2xl shadow-2xl border border-white/10 transition-all duration-300 ${isOpen ? "scale-100 translate-y-0" : "scale-95 -translate-y-4"
+          className={`absolute top-24 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-sm bg-white/5 rounded-2xl shadow-2xl border border-white/10 transition-all duration-300 ${isOpen ? "scale-100 translate-y-0" : "scale-95 -translate-y-4"
             }`}
         >
           <div className="p-6">
-            {/* Mobile Nav Links */}
             <div className="space-y-1">
               {navItems.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
                   className={`flex items-center justify-between p-4 rounded-xl text-base font-medium transition-colors duration-200 ${activeSection === item.href.substring(1)
-                      ? "bg-slate-50 text-slate-900"
-                      : "text-white hover:bg-white/10 hover:text-white"
+                    ? "bg-slate-50 text-slate-900"
+                    : "text-white hover:bg-white/10 hover:text-white"
                     }`}
                   onClick={() => setIsOpen(false)}
                 >
@@ -140,16 +126,14 @@ export default function MinimalNavbar() {
                 </a>
               ))}
             </div>
-
-            {/* Mobile CTA */}
             <div className="mt-6 pt-6 border-t border-white/15">
               <a
-                href="https://discord.gg/DRCE9wCn4K"
+                href="https://instagram.com/slow3rxq"
                 target="_blank"
                 className="flex items-center justify-center w-full py-4 px-6 rounded-xl text-base font-semibold text-white bg-slate-900 hover:bg-slate-800 transition-colors duration-200"
                 onClick={() => setIsOpen(false)}
               >
-                Birlikte Çalışalım
+                Work With Us
                 <ArrowRight className="ml-2 h-4 w-4" />
               </a>
             </div>
