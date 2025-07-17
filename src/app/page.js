@@ -214,7 +214,7 @@ export default function LanyardCard() {
               </div>
             </div>
           ) : (
-            <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl p-4 text-gray-300 text-sm text-center shadow-inner">
+            <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl p-4 text-gray-300 text-sm text-center shadow-inner hover:scale-[1.02] transition-all duration-300 ease-out">
               There are currently no applications open.
             </div>
           )}
