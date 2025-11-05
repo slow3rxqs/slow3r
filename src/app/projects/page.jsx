@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Github, ExternalLink } from "lucide-react";
 import { FaNpm, FaDiscord } from "react-icons/fa";
 import { TfiWorld } from "react-icons/tfi";
-import { motion } from "framer-motion"; // ✅ eklendi
+import { motion } from "framer-motion";
 
 const languageColors = {
   JavaScript: "bg-yellow-500/20 border-yellow-400/30 text-yellow-300",
@@ -183,3 +183,4 @@ export default function ProjectsPage() {
     </div>
   );
 }
+
