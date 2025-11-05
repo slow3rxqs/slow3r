@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Github, ExternalLink } from "lucide-react";
 import { FaNpm, FaDiscord } from "react-icons/fa";
 import { TfiWorld } from "react-icons/tfi";
+import { motion } from "framer-motion"; // ✅ eklendi
 
 const languageColors = {
   JavaScript: "bg-yellow-500/20 border-yellow-400/30 text-yellow-300",
@@ -16,42 +17,16 @@ const languageColors = {
   Go: "bg-cyan-500/20 border-cyan-400/30 text-cyan-300",
   Rust: "bg-orange-600/20 border-orange-500/30 text-orange-400",
   "Next.js": "bg-black/20 border-white/30 text-white",
-  "React": "bg-cyan-300/20 border-cyan-300/30 text-cyan-200",
+  React: "bg-cyan-300/20 border-cyan-300/30 text-cyan-200",
   "Tailwind CSS": "bg-teal-500/20 border-teal-400/30 text-teal-300",
   "Node.js": "bg-green-700/20 border-green-600/30 text-green-400",
   "Discord.js": "bg-indigo-600/20 border-indigo-500/30 text-indigo-300",
-  "Firebase": "bg-amber-400/20 border-amber-300/30 text-amber-200",
-  "NPM": "bg-red-600/20 border-red-500/30 text-red-300",
+  Firebase: "bg-amber-400/20 border-amber-300/30 text-amber-200",
+  NPM: "bg-red-600/20 border-red-500/30 text-red-300",
   default: "bg-gray-500/20 border-gray-400/30 text-gray-300",
 };
 
-
-const projects = [
-  {
-    title: "lavinnia bot",
-    description: "Easy installation and practical use for users",
-    tech: ["Node.js", "Discord.js", "Firebase"],
-    discord: "https://discord.gg/8QMjneYC63",
-  },
-  {
-    title: "slow3rxq portfolio",
-    description: "Modern personal website built with React and Tailwind.",
-    tech: ["Next.js", "Tailwind CSS"],
-    website: "https://slow3r.xyz",
-  },
-  {
-    title: "netuser portfolio",
-    description: "Modern personal website built with React and Tailwind.",
-    tech: ["Next.js", "Tailwind CSS"],
-    website: "https://hakancanpolat.vercel.app/",
-  },
-  {
-    title: "kick-stream",
-    description: "Broadcast notification system prepared with Discord.js.",
-    tech: ["Discord.js", "NPM"],
-    npm: "https://www.npmjs.com/package/kick-stream",
-  },
-];
+const projects = [ /*{ title: "slow3rxq portfolio", description: "React ve Tailwind ile hazırlanmış modern kişisel web sitesi.", tech: ["Next.js", "Tailwind CSS"], website: "https://slow3r.xyz", },*/];
 
 export default function ProjectsPage() {
   const [githubRepos, setGithubRepos] = useState([]);
@@ -80,10 +55,10 @@ export default function ProjectsPage() {
 
       const repos = allRepos.map((repo) => ({
         title: repo.name,
-        description: repo.description || "No explanation.",
-        tech: [repo.language || "Unknown"],
+        description: repo.description || "Açıklama yok.",
+        tech: [repo.language],
         github: repo.html_url,
-        language: repo.language || "Unknown",
+        language: repo.language || "Bilinmiyor",
       }));
 
       setGithubRepos(repos);
@@ -93,9 +68,13 @@ export default function ProjectsPage() {
   }, []);
 
   const renderProjectCard = (project, index) => (
-    <div
+    <motion.div
       key={index}
-      className="flex flex-col justify-between bg-white/5 border border-white/10 rounded-xl p-5 hover:bg-white/10 transition duration-300 shadow-md hover:scale-[1.02] ease-out h-full"
+      className="flex flex-col justify-between bg-white/5 border border-white/10 rounded-xl p-5 shadow-md h-full"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      whileHover={{ scale: 1.05 }}
     >
       <h2 className="text-xl font-semibold mb-2">{project.title}</h2>
       <p className="text-sm text-gray-300 mb-3">{project.description}</p>
@@ -163,26 +142,41 @@ export default function ProjectsPage() {
           </a>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white p-6">
       <div className="max-w-6xl mx-auto mt-32 space-y-16">
-        <section>
-          <h1 className="text-3xl font-bold mb-8 text-center">🧠 My Special Projects</h1>
+        {/*<section>
+         <h1 className="text-3xl font-bold mb-8 text-center">🧠 Özel Projelerim</h1>
           <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            {projects.map((project, index) => renderProjectCard(project, index))}
+           {projects.map((project, index) => renderProjectCard(project, index))}
           </div>
-        </section>
+         </section>
+        */}
         <section>
-          <h1 className="text-3xl font-bold mb-8 text-center">🌐 GitHub Projelerim</h1>
+          <motion.h1
+            className="text-3xl font-bold mb-8 text-center"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            🌐 GitHub Projelerim
+          </motion.h1>
           {githubRepos.length > 0 ? (
             <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
               {githubRepos.map((repo, index) => renderProjectCard(repo, index))}
             </div>
           ) : (
-            <p className="text-center text-gray-400">Loading or project not found...</p>
+            <motion.p
+              className="text-center text-gray-400"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+            >
+              Yükleniyor veya proje bulunamadı...
+            </motion.p>
           )}
         </section>
       </div>
