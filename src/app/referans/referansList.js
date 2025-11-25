@@ -20,7 +20,7 @@ export const referansList = [
    {
     name: "RemHosting",
     description: "Güvenilir ve DDoS korumalı sanal sunucu satışı",
-    image: "/Rem Host Yazı Logo.png",
+    image: "/remhost.png",
     link: "https://remhosting.net",
   },
 ];
