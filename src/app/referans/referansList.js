@@ -17,4 +17,10 @@ export const referansList = [
     image: "/tbeglobal.jpg",
     link: "https://tbeglobal.net",
   },
+   {
+    name: "RemHosting",
+    description: "Güvenilir ve DDoS korumalı sanal sunucu satışı",
+    image: "/Rem Host Yazı Logo.png",
+    link: "https://remhosting.net",
+  },
 ];
